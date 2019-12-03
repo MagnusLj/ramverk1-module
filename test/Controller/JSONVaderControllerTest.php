@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the IpcheckControllerTest.
  */
-class jsonVaderControllerTest extends TestCase
+class JsonVaderControllerTest extends TestCase
 {
     /**
      * Prepare before each test.
@@ -20,7 +20,7 @@ class jsonVaderControllerTest extends TestCase
         $di = $this->di;
         $di->loadServices(ANAX_INSTALL_PATH . "/config/di");
         $di->get('cache')->setPath(ANAX_INSTALL_PATH . "/test/cache");
-        $this->controller = new jsonVaderController();
+        $this->controller = new JsonVaderController();
         $this->controller->setDI($this->di);
         $session = $di->get("session");
     }
