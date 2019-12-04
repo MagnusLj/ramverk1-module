@@ -1,5 +1,7 @@
 Revision history
 
+###v1.0.3
+Check that Packagist gets updated from GitHub
 
 ###v1.0.2
 Working
