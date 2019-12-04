@@ -1,6 +1,6 @@
 {
-    "name" : "anax/noname",
-    "description": "A me page for the ramverk1 course.",
+    "name" : "magnuslj/ramverk1-module",
+    "description": "Weather and IP module.",
     "license": "MIT",
     "minimum-stability": "beta",
     "prefer-stable": true,
@@ -12,8 +12,18 @@
         }
     },
     "require": {
-        "anax/anax-ramverk1-me": "^1.0.0",
-        "anax/anax-cli": "^1.2"
+        "php": "^7.2",
+        "anax/commons": "^2.0.0@alpha",
+        "anax/configure": "^2.0.0@alpha",
+        "anax/controller": "^2.0.0@beta",
+        "anax/di": "^2.0.0@alpha",
+        "anax/page": "^2.0.0@beta",
+        "anax/request": "^2.0.0@beta",
+        "anax/response": "^2.0.0@beta",
+        "anax/view": "^2.0.0@beta",
+        "anax/url": "^2.0.0@alpha",
+        "anax/anax-cli": "^1.2",
+        "anax/session": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7"
