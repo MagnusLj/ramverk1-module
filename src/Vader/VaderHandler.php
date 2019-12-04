@@ -234,7 +234,7 @@ class VaderHandler
     public function checkWeather2($weather)
     {
         $weather2 = [];
-        $locale = 'sv-SE.utf8';
+        $locale = 'sv_SE.utf8';
         setlocale(LC_TIME, $locale);
         $i=0;
         foreach ($weather as $day) {
