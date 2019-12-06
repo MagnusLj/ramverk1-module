@@ -1,5 +1,8 @@
 Revision history
 
+###v2.0.0
+Added travis.yml
+
 ###v1.0.3
 Check that Packagist gets updated from GitHub
 
