@@ -20,7 +20,7 @@ class JsonVaderController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
+// A useless comment sort of but not really
 
     // /**
     //  * @var string $db a sample member variable that gets initialised
