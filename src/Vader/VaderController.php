@@ -92,7 +92,7 @@ class VaderController implements ContainerInjectableInterface
 
         $vader = $this->di->get("vader");
 
-        $ipHandler = new \Malm18\IPChecker\IpHandler();
+        $ipHandler = new \Malm18\IPChecker\IPHandler();
 
         $coordinates = $vader->checkCoordinates($theIP);
 

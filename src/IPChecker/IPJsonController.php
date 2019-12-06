@@ -105,7 +105,7 @@ class IPJsonController implements ContainerInjectableInterface
         // $request = $this->di->request;
         $theIP = $this->di->get("request")->getGet("ip");
 
-        $ipHandler = new IpHandler();
+        $ipHandler = new IPHandler();
         // $ipInfo = $ipHandler->checkIP($theIP);
 
         $ipInfo = $ipHandler->checkIP($theIP);
@@ -138,7 +138,7 @@ class IPJsonController implements ContainerInjectableInterface
         // $hostname = $session->get("hostname");
         // $type = $session->get("type");
         // var_dump($session);
-        $ipHandler = new IpHandler();
+        $ipHandler = new IPHandler();
 
         $ownIP = $ipHandler->checkOwnIP();
 

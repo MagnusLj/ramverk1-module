@@ -150,7 +150,7 @@ class VaderHandler
 
 
 
-            for ($i=0; $i < 3; $i++) {
+            for ($i=0; $i < 30; $i++) {
                 $unixTime = time() - ($i * 24 * 60 * 60);
                 $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . ','. $unixTime . $endStuff;
                 $multiCurl[$i] = curl_init();

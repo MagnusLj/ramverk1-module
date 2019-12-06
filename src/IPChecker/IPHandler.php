@@ -2,7 +2,7 @@
 
 namespace Malm18\IPChecker;
 
-class IpHandler
+class IPHandler
 {
 
 

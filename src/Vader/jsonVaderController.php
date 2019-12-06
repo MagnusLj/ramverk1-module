@@ -107,7 +107,7 @@ class JsonVaderController implements ContainerInjectableInterface
         $theIP = $this->di->get("request")->getGet("ip");
         $pastOrFuture = $this->di->get("request")->getGet("pastOrFuture");
 
-        $ipHandler = new \Malm18\IPChecker\IpHandler();
+        $ipHandler = new \Malm18\IPChecker\IPHandler();
 
         $coordinates = $vader->checkCoordinates($theIP);
 
@@ -156,7 +156,7 @@ class JsonVaderController implements ContainerInjectableInterface
         // $hostname = $session->get("hostname");
         // $type = $session->get("type");
         // var_dump($session);
-        $ipHandler = new \Malm18\IPChecker\IpHandler();
+        $ipHandler = new \Malm18\IPChecker\IPHandler();
 
         $ownIP = $ipHandler->checkOwnIP();
 

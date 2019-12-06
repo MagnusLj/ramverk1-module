@@ -23,7 +23,7 @@ class IPController implements ContainerInjectableInterface
     public function indexActionGet() : object
     {
         // $session = $this->di->session;
-        $ipHandler = new IpHandler();
+        $ipHandler = new IPHandler();
 
         $ownIP = $ipHandler->checkOwnIP();
 
@@ -85,7 +85,7 @@ class IPController implements ContainerInjectableInterface
 
         $theIP = $session->get("ip1");
 
-        $ipHandler = new IpHandler();
+        $ipHandler = new IPHandler();
 
         $ipInfo = $ipHandler->checkIP($theIP);
 
