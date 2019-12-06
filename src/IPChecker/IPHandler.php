@@ -2,7 +2,7 @@
 
 namespace Malm18\IPChecker;
 
-class IPHandler
+class IpHandler
 {
 
 
@@ -32,8 +32,8 @@ class IPHandler
     //         $type = "Inte riktig IP-adress";
     //     }
     //
-    //     $IPInfo = array("ipaddress"=>$theIP, "hostname"=>$hostname, "type"=>$type);
-    //     return $IPInfo;
+    //     $ipInfo = array("ipaddress"=>$theIP, "hostname"=>$hostname, "type"=>$type);
+    //     return $ipInfo;
     // }
 
 
@@ -43,9 +43,9 @@ class IPHandler
             $url = 'http://api.ipstack.com/';
             $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
             $this->ipstackKey = $keys["ipstackKey"];
-            $api_key = $this->ipstackKey;
-            $request_url = $url . $theIP . '?access_key=' . $api_key;
-            $curl = curl_init($request_url);
+            $apiKey = $this->ipstackKey;
+            $requestUrl = $url . $theIP . '?access_key=' . $apiKey;
+            $curl = curl_init($requestUrl);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -129,8 +129,8 @@ class IPHandler
 
     public function checkOwnIP()
     {
-        $remote_addr = isset($_SERVER['REMOTE_ADDR'])? $_SERVER['REMOTE_ADDR']:'127.0.0.1';
-        return $remote_addr;
+        $remoteAddr = isset($_SERVER['REMOTE_ADDR'])? $_SERVER['REMOTE_ADDR']:'127.0.0.1';
+        return $remoteAddr;
     }
 
 

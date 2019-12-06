@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test the IpcheckControllerTest.
+ *
+ * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+ *
  */
 class VaderControllerTest extends TestCase
 {
@@ -214,8 +217,8 @@ class VaderControllerTest extends TestCase
 
     public function testResultPageActionGet4()
     {
-        $request = $this->di->get("request");
-        $response = $this->di->get("response");
+        // $request = $this->di->get("request");
+        // $response = $this->di->get("response");
         $session = $this->di->get("session");
         $this->di->set("response", "\Anax\Response\Response");
         // $request->setPost("ip1", "Kramfors");

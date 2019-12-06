@@ -23,9 +23,9 @@ class IPController implements ContainerInjectableInterface
     public function indexActionGet() : object
     {
         // $session = $this->di->session;
-        $IPHandler = new IPHandler();
+        $ipHandler = new IpHandler();
 
-        $ownIP = $IPHandler->checkOwnIP();
+        $ownIP = $ipHandler->checkOwnIP();
 
 
 
@@ -46,26 +46,26 @@ class IPController implements ContainerInjectableInterface
     public function indexActionPost() : object
     {
         $session = $this->di->session;
-        $IPHandler = new IPHandler();
+        // $ipHandler = new IpHandler();
         $request = $this->di->request;
         $response = $this->di->response;
         $theIP = $request->getPost("ip1");
 
         if (!is_null($theIP)) {
-            // $IPInfo = $IPHandler->checkIP($theIP);
-            // $IPInfo2 = json_decode($IPInfo, true);
-            // $IPInfo3 = gettype($IPInfo);
-            // echo $IPInfo3;
-            // var_dump(json_decode($IPInfo, true));
-            // var_dump($IPInfo2);
-            // var_dump($IPInfo['ip']);
+            // $ipInfo = $ipHandler->checkIP($theIP);
+            // $ipInfo2 = json_decode($ipInfo, true);
+            // $ipInfo3 = gettype($ipInfo);
+            // echo $ipInfo3;
+            // var_dump(json_decode($ipInfo, true));
+            // var_dump($ipInfo2);
+            // var_dump($ipInfo['ip']);
             $session->set("ip1", $theIP);
-            // $session->set("hostname", $IPInfo['hostname']);
-            // $session->set("type", $IPInfo['type']);
-            // $session->set("latitude", $IPInfo['latitude']);
-            // $session->set("longitude", $IPInfo['longitude']);
-            // $session->set("city", $IPInfo['city']);
-            // $session->set("country_name", $IPInfo['country_name']);
+            // $session->set("hostname", $ipInfo['hostname']);
+            // $session->set("type", $ipInfo['type']);
+            // $session->set("latitude", $ipInfo['latitude']);
+            // $session->set("longitude", $ipInfo['longitude']);
+            // $session->set("city", $ipInfo['city']);
+            // $session->set("country_name", $ipInfo['country_name']);
         }
 
            return $response->redirect("ip-checker/resultpage");
@@ -76,35 +76,35 @@ class IPController implements ContainerInjectableInterface
     public function resultPageActionGet() : object
     {
 
-        // $session->set("latitude", $IPInfo['latitude']);
-        // $session->set("longitude", $IPInfo['longitude']);
-        // $session->set("city", $IPInfo['city']);
-        // $session->set("country_name", $IPInfo['country_name']);
+        // $session->set("latitude", $ipInfo['latitude']);
+        // $session->set("longitude", $ipInfo['longitude']);
+        // $session->set("city", $ipInfo['city']);
+        // $session->set("country_name", $ipInfo['country_name']);
 
         $session = $this->di->session;
 
         $theIP = $session->get("ip1");
 
-        $IPHandler = new IPHandler();
+        $ipHandler = new IpHandler();
 
-        $IPInfo = $IPHandler->checkIP($theIP);
+        $ipInfo = $ipHandler->checkIP($theIP);
 
-        $latitude = $IPInfo['latitude'];
-        $longitude = $IPInfo['longitude'];
-        $minLong = $IPHandler->minLong($IPInfo['longitude']);
-        $maxLong = $IPHandler->maxLong($IPInfo['longitude']);
-        $minLat = $IPHandler->minLat($IPInfo['latitude']);
-        $maxLat = $IPHandler->maxLat($IPInfo['latitude']);
+        $latitude = $ipInfo['latitude'];
+        $longitude = $ipInfo['longitude'];
+        $minLong = $ipHandler->minLong($ipInfo['longitude']);
+        $maxLong = $ipHandler->maxLong($ipInfo['longitude']);
+        $minLat = $ipHandler->minLat($ipInfo['latitude']);
+        $maxLat = $ipHandler->maxLat($ipInfo['latitude']);
 
         // echo("$latitude");
         // echo($latitude);
 
-        $mapLink = $IPHandler->mapLink($latitude, $longitude, $minLat, $maxLat, $minLong, $maxLong);
+        $mapLink = $ipHandler->mapLink($latitude, $longitude, $minLat, $maxLat, $minLong, $maxLong);
 
         // $var = 5;
         // $var_is_greater_than_two = ($var > 2 ? true : false);
 
-        // var_dump($IPInfo);
+        // var_dump($ipInfo);
         // $session->set("ip1", "ip2");
 
         // $hostname = $session->get("hostname");
@@ -117,15 +117,15 @@ class IPController implements ContainerInjectableInterface
         // var_dump($session);
         $data = [
             "ip1" => $theIP,
-            "city" => $IPInfo['city'],
-            "country_name" => $IPInfo['country_name'],
-            "latitude" => $IPInfo['latitude'],
-            "longitude" => $IPInfo['longitude'],
+            "city" => $ipInfo['city'],
+            "country_name" => $ipInfo['country_name'],
+            "latitude" => $ipInfo['latitude'],
+            "longitude" => $ipInfo['longitude'],
             "mapLink" => $mapLink,
-            "continent_name" => $IPInfo['continent_name'],
-            "region_name" => $IPInfo['region_name'],
-            // "calling_code" => $IPInfo['location']['calling_code'],
-            "type" => $IPInfo['type']
+            "continent_name" => $ipInfo['continent_name'],
+            "region_name" => $ipInfo['region_name'],
+            // "calling_code" => $ipInfo['location']['calling_code'],
+            "type" => $ipInfo['type']
         ];
         // Add content as a view and then render the page
         $page = $this->di->get("page");

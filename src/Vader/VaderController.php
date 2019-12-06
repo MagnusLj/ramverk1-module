@@ -22,7 +22,7 @@ class VaderController implements ContainerInjectableInterface
 
     public function indexActionGet() : object
     {
-        $vader = $this->di->get("vader");
+        // $vader = $this->di->get("vader");
         // $session = $this->di->session;
 
         // $ownIP = $vader->checkOwnIP();
@@ -50,29 +50,29 @@ class VaderController implements ContainerInjectableInterface
     public function indexActionPost() : object
     {
         $session = $this->di->session;
-        $vader = $this->di->get("vader");
-        // $IPHandler = new IPHandler();
+        // $vader = $this->di->get("vader");
+        // $ipHandler = new IpHandler();
         $request = $this->di->request;
         $response = $this->di->response;
         $theIP = $request->getPost("ip1");
         $pastOrFuture = $request->getPost("pastOrFuture");
 
         if (!is_null($theIP)) {
-            // $IPInfo = $IPHandler->checkIP($theIP);
-            // $IPInfo2 = json_decode($IPInfo, true);
-            // $IPInfo3 = gettype($IPInfo);
-            // echo $IPInfo3;
-            // var_dump(json_decode($IPInfo, true));
-            // var_dump($IPInfo2);
-            // var_dump($IPInfo['ip']);
+            // $ipInfo = $ipHandler->checkIP($theIP);
+            // $ipInfo2 = json_decode($ipInfo, true);
+            // $ipInfo3 = gettype($ipInfo);
+            // echo $ipInfo3;
+            // var_dump(json_decode($ipInfo, true));
+            // var_dump($ipInfo2);
+            // var_dump($ipInfo['ip']);
             $session->set("ip1", $theIP);
             $session->set("pastOrFuture", $pastOrFuture);
-            // $session->set("hostname", $IPInfo['hostname']);
-            // $session->set("type", $IPInfo['type']);
-            // $session->set("latitude", $IPInfo['latitude']);
-            // $session->set("longitude", $IPInfo['longitude']);
-            // $session->set("city", $IPInfo['city']);
-            // $session->set("country_name", $IPInfo['country_name']);
+            // $session->set("hostname", $ipInfo['hostname']);
+            // $session->set("type", $ipInfo['type']);
+            // $session->set("latitude", $ipInfo['latitude']);
+            // $session->set("longitude", $ipInfo['longitude']);
+            // $session->set("city", $ipInfo['city']);
+            // $session->set("country_name", $ipInfo['country_name']);
             // var_dump($session);
         }
            return $response->redirect("vader/resultpage");
@@ -83,10 +83,6 @@ class VaderController implements ContainerInjectableInterface
     public function resultPageActionGet() : object
     {
 
-        // $session->set("latitude", $IPInfo['latitude']);
-        // $session->set("longitude", $IPInfo['longitude']);
-        // $session->set("city", $IPInfo['city']);
-        // $session->set("country_name", $IPInfo['country_name']);
 
         $session = $this->di->session;
 
@@ -94,14 +90,9 @@ class VaderController implements ContainerInjectableInterface
 
         $pastOrFuture = $session->get("pastOrFuture");
 
-        // var_dump($theIP);
-
-        // $vader = $this->di->get("vader");
-        // $IPHandler = new IPHandler();
-
         $vader = $this->di->get("vader");
 
-        $IPHandler = new \Malm18\IPChecker\IPHandler();
+        $ipHandler = new \Malm18\IPChecker\IpHandler();
 
         $coordinates = $vader->checkCoordinates($theIP);
 
@@ -113,12 +104,12 @@ class VaderController implements ContainerInjectableInterface
 
             // print_r($weather);
 
-            $minLat = $IPHandler->minLat($latitude);
-            $maxLat = $IPHandler->maxLat($latitude);
-            $minLong = $IPHandler->minLong($longitude);
-            $maxLong = $IPHandler->maxLong($longitude);
+            $minLat = $ipHandler->minLat($latitude);
+            $maxLat = $ipHandler->maxLat($latitude);
+            $minLong = $ipHandler->minLong($longitude);
+            $maxLong = $ipHandler->maxLong($longitude);
 
-            $mapLink = $IPHandler->mapLink($latitude, $longitude, $minLat, $maxLat, $minLong, $maxLong);
+            $mapLink = $ipHandler->mapLink($latitude, $longitude, $minLat, $maxLat, $minLong, $maxLong);
 
             // $var = 5;
             // $var_is_greater_than_two = ($var > 2 ? true : false);
@@ -153,14 +144,14 @@ class VaderController implements ContainerInjectableInterface
 
             // $data = [
             //     "ip1" => $theIP,
-            //     "city" => $IPInfo['city'],
-            //     "country_name" => $IPInfo['country_name'],
-            //     "latitude" => $IPInfo['latitude'],
-            //     "longitude" => $IPInfo['longitude'],
+            //     "city" => $ipInfo['city'],
+            //     "country_name" => $ipInfo['country_name'],
+            //     "latitude" => $ipInfo['latitude'],
+            //     "longitude" => $ipInfo['longitude'],
             //     "mapLink" => $mapLink,
-            //     "continent_name" => $IPInfo['continent_name'],
-            //     "region_name" => $IPInfo['region_name'],
-            //     "type" => $IPInfo['type']
+            //     "continent_name" => $ipInfo['continent_name'],
+            //     "region_name" => $ipInfo['region_name'],
+            //     "type" => $ipInfo['type']
             // ];
 
             $data = [

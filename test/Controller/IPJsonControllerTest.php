@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test the IpcheckControllerTest.
+ *
+ * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+ *
  */
 class IPJsonControllerTest extends TestCase
 {

@@ -20,9 +20,9 @@ class VaderHandler
             $coordinates = [];
             $url = 'http://api.ipstack.com/';
             $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
-            $api_key = $keys["ipstackKey"];
-            $request_url = $url . $theIP . '?access_key=' . $api_key;
-            $curl = curl_init($request_url);
+            $apiKey = $keys["ipstackKey"];
+            $requestUrl = $url . $theIP . '?access_key=' . $apiKey;
+            $curl = curl_init($requestUrl);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -47,10 +47,10 @@ class VaderHandler
 
             // $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
             // $this->ipstackKey = $keys["ipstackKey"];
-            // $api_key = $this->ipstackKey;
-            $request_url = $url1 . $theIP . '&format=json&limit=1&email=a@b.se';
-            // $request_url = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
-            $curl = curl_init($request_url);
+            // $apiKey = $this->ipstackKey;
+            $requestUrl = $url1 . $theIP . '&format=json&limit=1&email=a@b.se';
+            // $requestUrl = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
+            $curl = curl_init($requestUrl);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -79,11 +79,11 @@ class VaderHandler
     //     $url1 = 'https://api.darksky.net/forecast/';
     //
     //     $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
-    //     $api_key = $keys["darkskyKey"];
-    //     $end_stuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
-    //     $request_url = $url1 . $api_key . "/" . $latitude . "," . $longitude . $end_stuff;
-    //     // $request_url = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
-    //     $curl = curl_init($request_url);
+    //     $apiKey = $keys["darkskyKey"];
+    //     $endStuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
+    //     $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . $endStuff;
+    //     // $requestUrl = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
+    //     $curl = curl_init($requestUrl);
     //     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     // // curl_setopt($curl, CURLOPT_HTTPHEADER, [
     // //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -110,12 +110,12 @@ class VaderHandler
         $url1 = 'https://api.darksky.net/forecast/';
 
         $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
-        $api_key = $keys["darkskyKey"];
-        $end_stuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
+        $apiKey = $keys["darkskyKey"];
+        $endStuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
 
         if ($pastOrFuture=="future") {
-            $requestUrl = $url1 . $api_key . "/" . $latitude . "," . $longitude . $end_stuff;
-            // $request_url = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
+            $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . $endStuff;
+            // $requestUrl = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
             $curl = curl_init($requestUrl);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
@@ -136,45 +136,45 @@ class VaderHandler
             // data to be returned
             $response = array();
             // multi handle
-            $mh = curl_multi_init();
+            $mhbutlonger = curl_multi_init();
 
 
 
 
         // for ($i=0; $i < 30; $i++) {
         //     $unixTime = time() - ($i * 24 * 60 * 60);
-        //     $multiRequests[] = $url1 . $api_key . "/" . $latitude . "," . $longitude . ','.$unixTime . $end_stuff;
+        //     $multiRequests[] = $url1 . $apiKey . "/" . $latitude . "," . $longitude . ','.$unixTime . $endStuff;
         // }
 
 
 
 
 
-            for ($i=0; $i < 30; $i++) {
+            for ($i=0; $i < 3; $i++) {
                 $unixTime = time() - ($i * 24 * 60 * 60);
-                $requestUrl = $url1 . $api_key . "/" . $latitude . "," . $longitude . ','. $unixTime . $end_stuff;
+                $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . ','. $unixTime . $endStuff;
                 $multiCurl[$i] = curl_init();
                 curl_setopt($multiCurl[$i], CURLOPT_URL, $requestUrl);
                 curl_setopt($multiCurl[$i], CURLOPT_HEADER, 0);
                 curl_setopt($multiCurl[$i], CURLOPT_RETURNTRANSFER, 1);
-                curl_multi_add_handle($mh, $multiCurl[$i]);
+                curl_multi_add_handle($mhbutlonger, $multiCurl[$i]);
             }
             $index=null;
             do {
-                curl_multi_exec($mh, $index);
+                curl_multi_exec($mhbutlonger, $index);
             } while ($index > 0);
         // get content and remove handles
             foreach ($multiCurl as $k => $ch) {
                 $response[$k] = curl_multi_getcontent($ch);
-                curl_multi_remove_handle($mh, $ch);
+                curl_multi_remove_handle($mhbutlonger, $ch);
             }
             // close
-            curl_multi_close($mh);
+            curl_multi_close($mhbutlonger);
 
             // $response2 = json_decode($response, true);
 
-            $daily = [];
-            $anArray = [];
+            // $daily = [];
+            // $anArray = [];
             $data = [];
             $data2 = [];
             $i=0;
@@ -202,8 +202,8 @@ class VaderHandler
 //     $url1 = 'https://api.darksky.net/forecast/';
 //
 //     $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
-//     $api_key = $keys["darkskyKey"];
-//     $end_stuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
+//     $apiKey = $keys["darkskyKey"];
+//     $endStuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
 //
 //     $multiRequests = [];
 //     #future weather
@@ -239,12 +239,12 @@ class VaderHandler
         $i=0;
         foreach ($weather as $day) {
             // array_push($weather2, $day['time']);
-            $unix_timestamp = $day['time'];
-            $datetime = date('Y-m-d l', $unix_timestamp);
+            $unixTimestamp = $day['time'];
+            $datetime = date('Y-m-d l', $unixTimestamp);
             $datetime2 = strftime('%A %d %B', strtotime($datetime));
 
-            // $unix_timestamp = $day['time'];
-            // $datetime = date('Y-m-d l', $unix_timestamp);
+            // $unixTimestamp = $day['time'];
+            // $datetime = date('Y-m-d l', $unixTimestamp);
             // $datetime2 = strftime('%A %d %B', strtotime($datetime));
 
             // $datetime2 = $datetime->format('d/m');
@@ -283,8 +283,8 @@ class VaderHandler
    // );
 
 
-    // $unix_timestamp = $_POST['timestamp'];
-    // $datetime = new DateTime("@$unix_timestamp");
+    // $unixTimestamp = $_POST['timestamp'];
+    // $datetime = new DateTime("@$unixTimestamp");
     // // Display GMT datetime
     // echo $datetime->format('d-m-Y H:i:s');
 
@@ -353,7 +353,7 @@ class VaderHandler
 
     // public function checkOwnIP()
     // {
-    //     $remote_addr = isset($_SERVER['REMOTE_ADDR'])? $_SERVER['REMOTE_ADDR']:'127.0.0.1';
-    //     return $remote_addr;
+    //     $remoteAddr = isset($_SERVER['REMOTE_ADDR'])? $_SERVER['REMOTE_ADDR']:'127.0.0.1';
+    //     return $remoteAddr;
     // }
 }

@@ -14,11 +14,14 @@
     <exclude-pattern>htdocs</exclude-pattern>
     <exclude-pattern>cache</exclude-pattern>
 
+    <exclude-pattern>test</exclude-pattern>
+    <exclude-pattern>src</exclude-pattern>
+
     <rule ref="rulesets/cleancode.xml">
         <exclude name="BooleanArgumentFlag" />
         <exclude name="ElseExpression" />
     </rule>
-    
+
     <rule ref="rulesets/codesize.xml" />
 
     <rule ref="rulesets/controversial.xml">
@@ -26,7 +29,7 @@
     </rule>
 
     <rule ref="rulesets/design.xml" />
-    
+
     <rule ref="rulesets/naming.xml">
         <exclude name="ShortVariable" />
         <exclude name="ShortMethodName" />

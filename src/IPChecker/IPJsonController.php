@@ -76,19 +76,19 @@ class IPJsonController implements ContainerInjectableInterface
     //     $theIP = $this->di->get("request")->getGet("ip");
     //     // var_dump($theIP);
     //
-    //     $IPHandler = new IPHandler();
-    //     $IPInfo = $IPHandler->checkIP($theIP);
+    //     $ipHandler = new IpHandler();
+    //     $ipInfo = $ipHandler->checkIP($theIP);
     //     $session = $this->di->session;
     //
-    //     // var_dump($IPInfo);
+    //     // var_dump($ipInfo);
     //
     //         // $json = [
-    //         //     "ipaddress" => $IPInfo['ipaddress'], "hostname" => $IPInfo['hostname'],
-    //         //     "type" => $IPInfo['ipaddress']
+    //         //     "ipaddress" => $ipInfo['ipaddress'], "hostname" => $ipInfo['hostname'],
+    //         //     "type" => $ipInfo['ipaddress']
     //         // ];
-    //         $json = json_encode($IPInfo, JSON_PRETTY_PRINT);
+    //         $json = json_encode($ipInfo, JSON_PRETTY_PRINT);
     //         $session->set("json", $json);
-    //         $session->set("ipaddress", $IPInfo['ipaddress']);
+    //         $session->set("ipaddress", $ipInfo['ipaddress']);
     //         return $response->redirect("ip-json-checker/jsonResultPage");
     //         // var_dump($json);
     //     // Deal with the action and return a response.
@@ -102,28 +102,28 @@ class IPJsonController implements ContainerInjectableInterface
 
     public function indexActionGet()
     {
-        $request = $this->di->request;
+        // $request = $this->di->request;
         $theIP = $this->di->get("request")->getGet("ip");
 
-        $IPHandler = new IPHandler();
-        // $IPInfo = $IPHandler->checkIP($theIP);
+        $ipHandler = new IpHandler();
+        // $ipInfo = $ipHandler->checkIP($theIP);
 
-        $IPInfo = $IPHandler->checkIP($theIP);
+        $ipInfo = $ipHandler->checkIP($theIP);
 
-        // $largeMapLink = $IPHandler->largeMapLink($IPInfo['latitude'], $IPInfo['longitude']);
+        // $largeMapLink = $ipHandler->largeMapLink($ipInfo['latitude'], $ipInfo['longitude']);
 
-        $largeMapLink = ($IPInfo['latitude'] ? $IPHandler->largeMapLink($IPInfo['latitude'], $IPInfo['longitude']) : "");
+        $largeMapLink = ($ipInfo['latitude'] ? $ipHandler->largeMapLink($ipInfo['latitude'], $ipInfo['longitude']) : "");
 
         // $message = 'Hello '.($user->is_logged_in() ? $user->get('first_name') : 'Guest');
 
-        $IPInfo2 = array("ip address" => $IPInfo['ip'], "type" => $IPInfo['type'], "city" => $IPInfo['city'],
-        "country" => $IPInfo['country_name'], "region_name" => $IPInfo['region_name'], "continent_name" => $IPInfo['continent_name'],
-        "latitude" => $IPInfo['latitude'], "longitude" => $IPInfo['longitude'],
+        $ipInfo2 = array("ip address" => $ipInfo['ip'], "type" => $ipInfo['type'], "city" => $ipInfo['city'],
+        "country" => $ipInfo['country_name'], "region_name" => $ipInfo['region_name'], "continent_name" => $ipInfo['continent_name'],
+        "latitude" => $ipInfo['latitude'], "longitude" => $ipInfo['longitude'],
         "map_link" => $largeMapLink);
         //
-        // $json = json_encode($IPInfo2);
+        // $json = json_encode($ipInfo2);
 
-        return [$IPInfo2];
+        return [$ipInfo2];
     }
 
 //     $var = 5;
@@ -138,9 +138,9 @@ class IPJsonController implements ContainerInjectableInterface
         // $hostname = $session->get("hostname");
         // $type = $session->get("type");
         // var_dump($session);
-        $IPHandler = new IPHandler();
+        $ipHandler = new IpHandler();
 
-        $ownIP = $IPHandler->checkOwnIP();
+        $ownIP = $ipHandler->checkOwnIP();
 
         $data = [
             "ownIP" => $ownIP
@@ -163,15 +163,15 @@ class IPJsonController implements ContainerInjectableInterface
     //
     //
     //     // $session = $this->di->session;
-    //     // $IPHandler = $session->get("IPHandler");
+    //     // $ipHandler = $session->get("IpHandler");
     //     $request = $this->di->request;
     //     $response = $this->di->response;
     //     if ($request->getPost("ipsubmit")) {
     //     $theIP = $request->getPost("ip1");
-    //     // $IPInfo = $IPHandler->checkIP($theIP);
-    //     // $session->set("ip1", $IPInfo['ipaddress']);
-    //     // $session->set("hostname", $IPInfo['hostname']);
-    //     // $session->set("type", $IPInfo['type']);
+    //     // $ipInfo = $ipHandler->checkIP($theIP);
+    //     // $session->set("ip1", $ipInfo['ipaddress']);
+    //     // $session->set("hostname", $ipInfo['hostname']);
+    //     // $session->set("type", $ipInfo['type']);
     //
     //     return $response->redirect("ip-json-checker?ip=$theIP");
     // }
@@ -182,17 +182,18 @@ class IPJsonController implements ContainerInjectableInterface
     public function ipJsonCheckerActionPost() : object
     {
            // $session = $this->di->session;
-           $IPHandler = new IPHandler();
+           // $ipHandler = new IpHandler();
            $request = $this->di->request;
            $response = $this->di->response;
            $theIP = $request->getPost("ip1");
 
-        if (!is_null($theIP)) {
-            $IPInfo = $IPHandler->checkIP($theIP);
-             // $session->set("ip1", $IPInfo['ipaddress']);
-             // $session->set("hostname", $IPInfo['hostname']);
-             // $session->set("type", $IPInfo['type']);
-        }
+        // if (!is_null($theIP)) {
+        //     $ipInfo = $ipHandler->checkIP($theIP);
+        //     $ipInfo = $ipInfo . "röv";
+        //      // $session->set("ip1", $ipInfo['ipaddress']);
+        //      // $session->set("hostname", $ipInfo['hostname']);
+        //      // $session->set("type", $ipInfo['type']);
+        // }
 
            return $response->redirect("ip-json-checker?ip=$theIP");
     }
