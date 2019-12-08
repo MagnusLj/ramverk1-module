@@ -115,7 +115,7 @@ class VaderHandler
         $apiKey = $keys["darkskyKey"];
         $endStuff = '?exclude=minutely,hourly,currently,alerts,flags&extend=daily&lang=sv&units=si';
 
-        if ($pastOrFuture=="future") {
+        if ($pastOrFuture == "future") {
             $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . $endStuff;
             // $requestUrl = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
             $curl = curl_init($requestUrl);
@@ -154,16 +154,16 @@ class VaderHandler
 
 
 
-            for ($i=0; $i < 30; $i++) {
+            for ($i = 0; $i < 30; $i++) {
                 $unixTime = time() - ($i * 24 * 60 * 60);
-                $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . ','. $unixTime . $endStuff;
+                $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . ',' . $unixTime . $endStuff;
                 $multiCurl[$i] = curl_init();
                 curl_setopt($multiCurl[$i], CURLOPT_URL, $requestUrl);
                 curl_setopt($multiCurl[$i], CURLOPT_HEADER, 0);
                 curl_setopt($multiCurl[$i], CURLOPT_RETURNTRANSFER, 1);
                 curl_multi_add_handle($mhbutlonger, $multiCurl[$i]);
             }
-            $index=null;
+            $index = null;
             do {
                 curl_multi_exec($mhbutlonger, $index);
             } while ($index > 0);
@@ -181,12 +181,12 @@ class VaderHandler
             // $anArray = [];
             // $data = [];
             $data2 = [];
-            $i=0;
+            $i = 0;
             foreach ($response as $item) {
                 $data = json_decode($item, true);
                 $data2[$i] = $data['daily']['data'][0];
                 // $data[$i] = $item;
-                $i=$i+1;
+                $i = $i + 1;
             }
             // $daily['data'] = $data;
             // $anArray['daily'] = $daily;
@@ -240,7 +240,7 @@ class VaderHandler
         $weather2 = [];
         $locale = 'sv_SE.utf8';
         setlocale(LC_TIME, $locale);
-        $i=0;
+        $i = 0;
         foreach ($weather as $day) {
             // array_push($weather2, $day['time']);
             $unixTimestamp = $day['time'];
@@ -262,7 +262,7 @@ class VaderHandler
             $weather2[$i]['windSpeed'] = round($day['windSpeed']);
             $weather2[$i]['windBearing'] = $day['windBearing'];
             // array_push($weather2, $datetime2);
-            $i=$i+1;
+            $i = $i + 1;
         }
         return $weather2;
     }
