@@ -45,10 +45,10 @@ class IPController implements ContainerInjectableInterface
 
     public function indexActionPost() : object
     {
-        $session = $this->di->session;
+        $session = $this->di->get("session");
         // $ipHandler = new IpHandler();
-        $request = $this->di->request;
-        $response = $this->di->response;
+        $request = $this->di->get("request");
+        $response = $this->di->get("response");
         $theIP = $request->getPost("ip1");
 
         if (!is_null($theIP)) {
