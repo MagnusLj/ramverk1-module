@@ -47,6 +47,7 @@ class IPHandler
             $apiKey = $keys["ipstackKey"];
             $requestUrl = $url . $theIP . '?access_key=' . $apiKey;
             $curl = curl_init($requestUrl);
+            if ($curl) {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -58,6 +59,7 @@ class IPHandler
             curl_close($curl);
             // echo $response . PHP_EOL;
             return $response2;
+        }    
         } else {
             $response = array("type" => "not valid ip", "ip" => "", "latitude"=> "", "longitude"=> "",
             "city" => "", "country_name" => "", "region_name" => "", "continent_name" => "", "location['country_code']" => "");
@@ -119,7 +121,7 @@ class IPHandler
 
     public function largeMapLink($latitude, $longitude)
     {
-
+        $link = "";
         if ($latitude) {
             $link = "https://www.openstreetmap.org/?mlat=" . $latitude . "&amp;mlon=" . $longitude . "#map=10/" . $latitude . "/" . $longitude;
         // <a href="https://www.openstreetmap.org/?mlat=55.8264&amp;mlon=13.3127#map=10/55.8264/13.3127">

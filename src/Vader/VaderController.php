@@ -84,7 +84,7 @@ class VaderController implements ContainerInjectableInterface
     {
 
 
-        $session = $this->di->session;
+        $session = $this->di->get("session");
 
         $theIP = $session->get("ip1");
 
