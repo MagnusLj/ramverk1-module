@@ -1,12 +1,21 @@
 Revision history
 
-###v2.0.1
+###v2.0.4
 Tweaked code to make scrutinizer happier.
-Reach actual 100% code coverage this time.
+Reached actual 100% code coverage this time.
+
+###v2.0.3
+Added .scrutinizer.yml
+
+###v2.0.2
+Work to get Travis working.
+
+###v2.0.1
+Work to get Travis working.
+
 
 ###v2.0.0
 Added .travis.yml
-Added .scrutinizer.yml
 
 ###v1.0.3
 Check that Packagist gets updated from GitHub
