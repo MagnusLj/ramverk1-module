@@ -175,7 +175,7 @@ class VaderHandler
 
             // $daily = [];
             // $anArray = [];
-            $data = [];
+            // $data = [];
             $data2 = [];
             $i=0;
             foreach ($response as $item) {

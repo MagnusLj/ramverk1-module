@@ -201,8 +201,8 @@ class JsonVaderController implements ContainerInjectableInterface
     {
            // $session = $this->di->session;
            // $ipHandler = new \Malm18\IPChecker\IpHandler();
-           $request = $this->di->request;
-           $response = $this->di->response;
+           $request = $this->di->get("request");
+           $response = $this->di->get("response");
            $theIP = $request->getPost("ip1");
            $pastOrFuture = $request->getPost("pastOrFuture");
 

@@ -183,8 +183,8 @@ class IPJsonController implements ContainerInjectableInterface
     {
            // $session = $this->di->session;
            // $ipHandler = new IpHandler();
-           $request = $this->di->request;
-           $response = $this->di->response;
+           $request = $this->di->get("request");
+           $response = $this->di->get("response");
            $theIP = $request->getPost("ip1");
 
         // if (!is_null($theIP)) {

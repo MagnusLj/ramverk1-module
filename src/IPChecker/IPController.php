@@ -81,7 +81,7 @@ class IPController implements ContainerInjectableInterface
         // $session->set("city", $ipInfo['city']);
         // $session->set("country_name", $ipInfo['country_name']);
 
-        $session = $this->di->session;
+        $session = $this->di->get("session");
 
         $theIP = $session->get("ip1");
 

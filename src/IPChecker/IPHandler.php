@@ -42,8 +42,9 @@ class IPHandler
         if (filter_var($theIP, FILTER_VALIDATE_IP)) {
             $url = 'http://api.ipstack.com/';
             $keys = require ANAX_INSTALL_PATH . "/config/keys.php";
-            $this->ipstackKey = $keys["ipstackKey"];
-            $apiKey = $this->ipstackKey;
+            // $this->ipstackKey = $keys["ipstackKey"];
+            // $apiKey = $this->ipstackKey;
+            $apiKey = $keys["ipstackKey"];
             $requestUrl = $url . $theIP . '?access_key=' . $apiKey;
             $curl = curl_init($requestUrl);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
