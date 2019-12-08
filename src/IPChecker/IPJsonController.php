@@ -67,7 +67,7 @@ class IPJsonController implements ContainerInjectableInterface
      * ANY METHOD mountpoint/
      * ANY METHOD mountpoint/index
      *
-         */
+     */
     // public function indexActionGet()
     // {
     //     // $request = $this->di->get("request");
@@ -181,11 +181,11 @@ class IPJsonController implements ContainerInjectableInterface
 
     public function ipJsonCheckerActionPost() : object
     {
-           // $session = $this->di->session;
-           // $ipHandler = new IpHandler();
-           $request = $this->di->get("request");
-           $response = $this->di->get("response");
-           $theIP = $request->getPost("ip1");
+            // $session = $this->di->session;
+            // $ipHandler = new IpHandler();
+            $request = $this->di->get("request");
+            $response = $this->di->get("response");
+            $theIP = $request->getPost("ip1");
 
         // if (!is_null($theIP)) {
         //     $ipInfo = $ipHandler->checkIP($theIP);
@@ -195,7 +195,7 @@ class IPJsonController implements ContainerInjectableInterface
         //      // $session->set("type", $ipInfo['type']);
         // }
 
-           return $response->redirect("ip-json-checker?ip=$theIP");
+            return $response->redirect("ip-json-checker?ip=$theIP");
     }
 
     // public function jsonResultPageActionGet() : object

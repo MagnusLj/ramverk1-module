@@ -68,7 +68,7 @@ class IPController implements ContainerInjectableInterface
             // $session->set("country_name", $ipInfo['country_name']);
         }
 
-           return $response->redirect("ip-checker/resultpage");
+            return $response->redirect("ip-checker/resultpage");
     }
 
 

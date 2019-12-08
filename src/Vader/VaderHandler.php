@@ -23,6 +23,7 @@ class VaderHandler
             $apiKey = $keys["ipstackKey"];
             $requestUrl = $url . $theIP . '?access_key=' . $apiKey;
             $curl = curl_init($requestUrl);
+            if ($curl) {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -37,6 +38,7 @@ class VaderHandler
             $coordinates['longitude'] = strval($response2['longitude']);
             // echo $response . PHP_EOL;
             return $coordinates;
+        }
         } else {
             $coordinates = [];
             // $response = array("type" => "not valid ip", "ip" => "", "latitude"=> "", "longitude"=> "",
@@ -51,6 +53,7 @@ class VaderHandler
             $requestUrl = $url1 . $theIP . '&format=json&limit=1&email=a@b.se';
             // $requestUrl = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
             $curl = curl_init($requestUrl);
+            if ($curl) {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -67,6 +70,7 @@ class VaderHandler
             }
             // echo $response . PHP_EOL;
             return $coordinates;
+        }
         }
     }
 
@@ -117,6 +121,7 @@ class VaderHandler
             $requestUrl = $url1 . $apiKey . "/" . $latitude . "," . $longitude . $endStuff;
             // $requestUrl = 'https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=bakery+in+berlin+wedding&format=json&limit=1&email=a@b.se';
             $curl = curl_init($requestUrl);
+            if ($curl) {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -130,6 +135,7 @@ class VaderHandler
             // $coordinates['longitude'] = $response2[0]['lon'];
             // echo $response . PHP_EOL;
             return $response2['daily']['data'];
+        }
         } else {
         // array of curl handles
             $multiCurl = array();
@@ -273,14 +279,6 @@ class VaderHandler
 //     foreach($arr as $key => &$val){
 //     $val['color'] = 'red';
 // }
-
-   //  $cars = array
-   // (
-   // array("Volvo",22,18),
-   // array("BMW",15,13),
-   // array("Saab",5,2),
-   // array("Land Rover",17,15)
-   // );
 
 
     // $unixTimestamp = $_POST['timestamp'];

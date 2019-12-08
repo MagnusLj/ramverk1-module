@@ -6,7 +6,7 @@ return [
     "services" => [
         "vader" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $vader = new \Malm18\Vader\VaderHandler();
                 return $vader;
             },

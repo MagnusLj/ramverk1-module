@@ -67,7 +67,7 @@ class JsonVaderController implements ContainerInjectableInterface
      * ANY METHOD mountpoint/
      * ANY METHOD mountpoint/index
      *
-         */
+     */
     // public function indexActionGet()
     // {
     //     // $request = $this->di->get("request");
@@ -199,12 +199,12 @@ class JsonVaderController implements ContainerInjectableInterface
 
     public function jsonVaderActionPost() : object
     {
-           // $session = $this->di->session;
-           // $ipHandler = new \Malm18\IPChecker\IpHandler();
-           $request = $this->di->get("request");
-           $response = $this->di->get("response");
-           $theIP = $request->getPost("ip1");
-           $pastOrFuture = $request->getPost("pastOrFuture");
+            // $session = $this->di->session;
+            // $ipHandler = new \Malm18\IPChecker\IpHandler();
+            $request = $this->di->get("request");
+            $response = $this->di->get("response");
+            $theIP = $request->getPost("ip1");
+            $pastOrFuture = $request->getPost("pastOrFuture");
 
         // if (!is_null($theIP)) {
         //     $ipInfo = $ipHandler->checkIP($theIP);
@@ -213,7 +213,7 @@ class JsonVaderController implements ContainerInjectableInterface
         //      // $session->set("type", $ipInfo['type']);
         // }
 
-           return $response->redirect("json-vader?ip=$theIP&pastOrFuture=$pastOrFuture");
+            return $response->redirect("json-vader?ip=$theIP&pastOrFuture=$pastOrFuture");
     }
 
     // public function jsonResultPageActionGet() : object

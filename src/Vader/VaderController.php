@@ -75,7 +75,7 @@ class VaderController implements ContainerInjectableInterface
             // $session->set("country_name", $ipInfo['country_name']);
             // var_dump($session);
         }
-           return $response->redirect("vader/resultpage");
+            return $response->redirect("vader/resultpage");
     }
 
 
