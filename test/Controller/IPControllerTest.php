@@ -61,7 +61,38 @@ class IPControllerTest extends TestCase
     {
         // Test action
         // $session = $di->get("session");
+        // $res = $this->controller->resultPageActionGet();
+
+        $session = $this->di->get("session");
+        $session->set("ip1", "208.67.222.222");
         $res = $this->controller->resultPageActionGet();
+
+        $this->assertIsObject($res);
+        $this->assertInstanceOf("Anax\Response\Response", $res);
+        $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
+        // Get body and compare results
+        $body = $res->getBody();
+        // $this->assertContains("<title>Validate IP result | ramverk1</title>", $body);
+        // $this->assertContains("<h1>Här är resultatet</h1>", $body);
+        // $this->assertContains("<h4>Text</h4>", $body);
+        // $this->assertContains("<h4>JSON</h4>", $body);
+        // $this->assertContains("<h4>Exempel</h4>", $body);
+    }
+
+
+    /**
+     * Test the route "index".
+     */
+    public function testResultPageActionGet2()
+    {
+        // Test action
+        // $session = $di->get("session");
+        // $res = $this->controller->resultPageActionGet();
+
+        $session = $this->di->get("session");
+        $session->set("ip1", "2");
+        $res = $this->controller->resultPageActionGet();
+
         $this->assertIsObject($res);
         $this->assertInstanceOf("Anax\Response\Response", $res);
         $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);

@@ -47,7 +47,7 @@ class IPHandler
             $apiKey = $keys["ipstackKey"];
             $requestUrl = $url . $theIP . '?access_key=' . $apiKey;
             $curl = curl_init($requestUrl);
-            if ($curl) {
+            // if ($curl) {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($curl, CURLOPT_HTTPHEADER, [
         //   'X-RapidAPI-Host: kvstore.p.rapidapi.com',
@@ -59,7 +59,7 @@ class IPHandler
             curl_close($curl);
             // echo $response . PHP_EOL;
             return $response2;
-        }
+        // }
         } else {
             $response = array("type" => "not valid ip", "ip" => "", "latitude"=> "", "longitude"=> "",
             "city" => "", "country_name" => "", "region_name" => "", "continent_name" => "", "location['country_code']" => "");
