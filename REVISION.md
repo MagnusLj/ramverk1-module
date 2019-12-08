@@ -1,5 +1,11 @@
 Revision history
 
+###v2.0.6
+Added a space that I removed earlier because scrutinizer didn't want it there but that phpcs did want there when I uploaded the repo to dbwebb.
+
+###v2.0.5
+Final version for kmom05
+
 ###v2.0.4
 Tweaked code to make scrutinizer happier.
 Reached actual 100% code coverage this time.
